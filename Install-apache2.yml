@@ -1,0 +1,14 @@
+---
+- name: This playbook Installs Httpd in Ubuntu
+  hosts: dbserver
+  become: true
+  tasks:
+  - name: Install APACHE2
+    apt:
+      name: apache2
+      state: present
+  - name: Start Apache2 Service
+    service:
+      name: apache
+      state: started
+

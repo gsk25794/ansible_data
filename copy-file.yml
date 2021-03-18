@@ -1,0 +1,11 @@
+---
+- name: Playbook to copy a file/Dir in Host
+  hosts: all
+  become: true
+  tasks:
+  - name: Copying a file
+    copy:
+      src: /opt/ansible/index.html
+      dest: /home/admingsk
+      mode: '600'
+      owner: john

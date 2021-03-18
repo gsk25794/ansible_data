@@ -1,0 +1,6 @@
+---
+- name: This playbook Installs Httpd and Apache
+  hosts: all
+  become: true
+  roles:
+  - name: setup-apache

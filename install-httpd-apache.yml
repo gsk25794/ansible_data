@@ -1,0 +1,35 @@
+---
+- name: This playbook Installs Httpd and Apache
+  hosts: all
+  become: true
+  tasks:
+  - name: Install HTTPD
+    yum:
+      name: httpd
+      state: installed
+    when: ansible_os_family == "RedHat"
+
+  - name: Start HTTPD Service
+    service:
+      name: httpd3
+      state: started
+    when: ansible_os_family == "RedHat"
+    ignore_errors: yes
+
+  - name: Install Apache2
+    apt:
+      name: apache2
+      state: present
+    when: ansible_os_family == "Debian"
+
+  - name: Start Apache2 Service
+    service:
+      name: apache2
+      state: started
+    when: ansible_os_family == "Debian"
+
+  - name: Copying Index File
+    copy:
+      src: /opt/ansible/index.html
+      dest: /var/www/html
+      mode: "666"

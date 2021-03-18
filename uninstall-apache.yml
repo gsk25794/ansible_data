@@ -1,0 +1,14 @@
+---
+- name: This playbook Uninstalls Apache
+  hosts: dbserver
+  become: true
+  tasks:
+  - name: Stop Apache Service
+    service:
+      name: apache2
+      state: stopped
+  - name: Uninstall Apache
+    yum:
+      name: apache2
+      state: absent
+

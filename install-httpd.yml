@@ -1,0 +1,16 @@
+---
+- name: This playbook Installs Httpd
+  hosts: webserver
+  become: true
+  tasks:
+  - name: Install HTTPD
+    yum:
+      name: httpd
+      state: installed
+    notify: Start HTTPD Service
+  
+  handlers:
+  - name: Start HTTPD Service
+    service:
+      name: httpd
+      state: started

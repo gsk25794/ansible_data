@@ -1,0 +1,14 @@
+---
+- name: This playbook Uninstalls Httpd
+  hosts: webserver
+  become: true
+  tasks:
+  - name: Stop HTTPD Service
+    service:
+      name: httpd
+      state: stopped
+  - name: Uninstall HTTPD
+    yum:
+      name: httpd
+      state: removed
+
